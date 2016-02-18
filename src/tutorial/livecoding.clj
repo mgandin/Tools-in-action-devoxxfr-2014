@@ -45,3 +45,14 @@
 (doseq [note c-major]
   (piano note)
   (Thread/sleep 200))
+
+(defonce again? (atom true))
+
+(future
+  (while @again?
+    (kickkick)
+    (Thread/sleep 200)
+    (snaresnare)
+    (Thread/sleep 200)))
+
+(reset! again? false)
