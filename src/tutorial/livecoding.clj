@@ -39,3 +39,9 @@
           :piano-handler)
 
 (remove-event-handler :piano-handler)
+
+(def c-major [(note :C4) (note :D4) (note :E4) (note :F4) (note :G4) (note :A4) (note :B4) (note :C5)])
+
+(doseq [note c-major]
+  (piano note)
+  (Thread/sleep 200))
