@@ -74,3 +74,15 @@
 (looper (now) 200 kickkick)
 (looper (now) 1600 clapclap)
 (stop)
+
+(defn sequencer [current period sound pattern]
+  (at current (when (= 1 (first pattern))
+                (sound)))
+  (let [new (+ current period)]
+    (apply-at new #'sequencer [new period sound (rest pattern)])))
+
+(sequencer (now) 200 kickkick (cycle[1 1 0 1 0 1 0 0]))
+(sequencer (now) 200 clapclap (cycle[1 0 0 0 0 0 0 1]))
+(sequencer (now) 200 snaresnare (cycle[0 0 1 0 0 1 0 0]))
+
+(stop)
