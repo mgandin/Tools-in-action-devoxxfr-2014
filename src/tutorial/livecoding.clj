@@ -31,3 +31,11 @@
 
 (synthe)
 (stop)
+
+(on-event [:midi :note-on]
+          (fn[event]
+            (let [note (:note event)]
+              (overpad (* 2 note))))
+          :piano-handler)
+
+(remove-event-handler :piano-handler)
