@@ -56,3 +56,21 @@
     (Thread/sleep 200)))
 
 (reset! again? false)
+
+(defn hello [current period]
+  (println "Hello Devoxx" current)
+  (let [new (+ current period)]
+    (apply-at new #'hello [new period])))
+
+(hello (now) 200)
+
+(stop)
+
+(defn looper [current period sound]
+  (at current (sound))
+  (let [new (+ current period)]
+    (apply-at new #'looper [new period sound])))
+
+(looper (now) 200 kickkick)
+(looper (now) 1600 clapclap)
+(stop)
