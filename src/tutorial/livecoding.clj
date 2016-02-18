@@ -17,3 +17,17 @@
 (drone 660)
 
 (stop)
+
+(definst modulation [freq 220]
+  (bpf(saw freq) (mouse-x 4 5000 EXP) (mouse-y 1 0.1 LIN)))
+
+(modulation)
+
+(stop)
+
+(defsynth synthe [freq 220]
+  (out 0 (bpf(saw freq) (mouse-x 4 5000 EXP) (mouse-y 1 0.1 LIN)))
+  (out 1 (bpf(sin-osc freq) (mouse-x 4 5000 EXP) (mouse-y 1 0.1 LIN))))
+
+(synthe)
+(stop)
